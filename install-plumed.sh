@@ -1,14 +1,12 @@
 version=2.5s0
 branch=2.5s
-#version=2.3s3
-#branch=2.3s
 
 # this is to install an official version
 # if no: a hidden module will be installed
 official_version=yes
-machine=ws
-# machine=falisca
-make_doc=yes
+machine=frontend2
+# machine = wc or frontend2
+make_doc=no # mbernett: silent for installation on frontend2 (guessed it was not necessary)
 
 # this is to skip installation phase
 do_install=yes
@@ -34,21 +32,25 @@ case "$machine" in
   CXXFLAGS="-O3 -axAVX" # not needed any more!
 #  CXXFLAGS="-O3 -xHost"
 ;;
-(falisca)
+(frontend2)
   modules="
-    openmpi/1.8.3/intel/14.0
-    libmatheval
-    xdrfile
+    intel/17.0
+    gnu/4.9.2
+    asmjit/673dcefa
+    openmpi/1.8.3/intel/17.0
+    xdrfile/3.3.4
   "
   runtime_modules="
-     openmpi/1.8.3/intel/14.0
+    intel/17.0
+    gnu/4.9.2
+    openmpi/1.8.3/intel/17.0
   "
   plumed_module=plumed
   CXXFLAGS="-O3 -xHost"
 ;;
 esac
 
-# this is ok both on ws and falisca
+# this is ok both on ws and frontend2
 module_path="$HOME/modules/modulefiles"
 install_path="$HOME/modules"
 
@@ -57,7 +59,8 @@ install_path="$HOME/modules"
 
 if [ "$official_version" = yes ]
 then
-  prefix=$install_path/$plumed_module/$version
+  prefix=$install_path/PLUMED/$version # mbernett: this is to use the specific format I like for dir names. Use the line below for general use
+#  prefix=$install_path/$plumed_module/$version
   htmldir=$install_path/$plumed_module/${branch}-doc
   config_options="$config_options --prefix=$prefix --htmldir=$htmldir"
   module_file="$module_path/$plumed_module/$version"
@@ -80,7 +83,9 @@ done
 if true ; then
 ### THIS IS THE HEAVY PART
 ./configure CXXFLAGS="$CXXFLAGS" LDFLAGS="-Wl,-rpath,$LIBRARY_PATH" $config_options --enable-modules=all --enable-asmjit
-make -j 12
+
+
+make -j 4 # mbernett: to avoid congestionating the login node on frontend2, increase if possible
 test "$make_doc" == yes && make doc
 if [ "$do_install" != yes ] ;
 then
