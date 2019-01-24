@@ -1,0 +1,31 @@
+#%Module1.0##############################################
+
+# Manually add here dependencies and conflicts
+# COPIED AND ADAPTED FROM /u/sbp/bussi/modules/modulefiles/asmjit/673dcef
+#
+module load intel/17.0
+module load gnu/4.9.2
+# include path
+
+set home /home/mbernett/modules/RANDOM/asmjit-673dcefa
+prepend-path  CPATH              $home/include
+prepend-path  INCLUDE            $home/include
+prepend-path  LIBRARY_PATH       $home/lib
+prepend-path  LD_LIBRARY_PATH    $home/lib
+
+# 2019-01-24 mbernett
+#
+# module load gnu/4.9.2
+# module load cmake/3.1.1  # cmake version 3.1.1: a newer version was available, but I incidentally loaded this one. It worked, it's fine.
+#
+# git clone git@github.com:asmjit/asmjit.git
+# cd asmjit
+# git checkout 673dcefa # this is a specific version
+# mkdir build; cd build
+#
+# cmake -G "Unix Makefiles" -DCMAKE_CXX_COMPILER=/u/shared/programs/x86_64/gnu/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/u/shared/programs/x86_64/gnu/gcc/4.9.2/bin/gcc -DCMAKE_INSTALL_PREFIX=/home/mbernett/modules/RANDOM/asmjit-673dcefa/ ../
+# # STRICTLY NECESSARY TO POINT TO SPECIFIC G++ AND GCC, THAT WAS NOT OTHERWISE SEEN BY CMAKE
+# 
+# make -j 4 
+# make install
+#
