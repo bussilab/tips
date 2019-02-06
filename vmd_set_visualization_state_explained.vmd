@@ -1,0 +1,435 @@
+#!/usr/local/bin/vmd
+# VMD script written by save_state $Revision: 1.47 $
+# VMD version: 1.9.2
+
+#### General Display settings
+display eyesep       0.065000
+display focallength  2.000000
+display height       6.000000
+display distance     -2.000000
+display projection   Orthographic
+display nearclip set 0.500000
+display farclip  set 10.000000
+display depthcue   off
+display cuestart   0.500000
+display cueend     10.000000
+display cuestart   0.500000
+display cueend     10.000000
+display cuedensity 0.320000
+display cuemode    Exp2
+display shadows off
+display ambientocclusion off
+display aoambient 0.800000
+display aodirect 0.300000
+display dof off
+display dof_fnumber 64.000000
+display dof_focaldist 0.700000
+####
+
+
+
+#### THIS ADDS A MOLECULE
+#
+# This is useful to automatically load a specific trajecory and apply the visualization settings at the same time. To open (after removing the comment from the 2 lines below), just type:
+#
+# vmd -e vmd_set_visualization_state.vmd
+#
+#mol new ../../xtc_npt_onlyKCL.gro type gro first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+#mol addfile run1.xtc_cen_mol.xtc type xtc first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+#
+# CONTRARILY, to recycle these visualization setting for a different trajectory:
+#
+# vmd whatever.gro whatever.xtc -e vmd_set_visualization_state.vmd
+#
+####
+
+
+
+#### THIS DRAWS A BOX
+#
+#graphics top color 0
+#graphics top material 0
+#graphics top line {0.000000 0.000000 0.000000} {101.752274 0.000000 0.000000} style solid width 3
+#graphics top line {0.000000 0.000000 0.000000} {0.000000 101.752274 0.000000} style solid width 3
+#graphics top line {0.000000 0.000000 0.000000} {50.876186 50.876186 71.949692} style solid width 3
+#graphics top line {101.752274 0.000000 0.000000} {152.628464 50.876186 71.949692} style solid width 3
+#graphics top line {0.000000 101.752274 0.000000} {101.752274 101.752274 0.000000} style solid width 3
+#graphics top line {50.876186 50.876186 71.949692} {50.876186 152.628464 71.949692} style solid width 3
+#graphics top line {101.752274 0.000000 0.000000} {101.752274 101.752274 0.000000} style solid width 3
+#graphics top line {0.000000 101.752274 0.000000} {50.876186 152.628464 71.949692} style solid width 3
+#graphics top line {50.876186 50.876186 71.949692} {152.628464 50.876186 71.949692} style solid width 3
+#graphics top line {152.628464 152.628464 71.949692} {101.752274 101.752274 0.000000} style solid width 3
+#graphics top line {152.628464 152.628464 71.949692} {152.628464 50.876186 71.949692} style solid width 3
+#graphics top line {152.628464 152.628464 71.949692} {50.876186 152.628464 71.949692} style solid width 3
+####
+
+
+
+#### A SERIES OF SELECTIONS for the Graphical Representations window ARE DEFINED HERE ON
+#
+# DELETE DEFAULT SELECTION "all" 0:
+mol delrep 0 top
+#
+# NOW DEFINE YOUR CUSTOM SELECTIONS
+#
+# NOTE: showrep molecule_number rep_number [on | off] --> on/off set with 1/0
+#
+
+## SEL 0
+mol representation Lines
+mol color Name
+mol selection {not ions and noh}
+mol material Opaque
+
+mol addrep top
+mol selupdate 0 top 0
+mol colupdate 0 top 0
+mol scaleminmax top 0 0.000000 0.000000
+mol smoothrep top 0 0
+mol drawframes top 0 {now}
+mol clipplane center 0 0 top {0.0 0.0 0.0}
+mol clipplane color  0 0 top {0.5 0.5 0.5 }
+mol clipplane normal 0 0 top {0.0 0.0 1.0}
+mol clipplane status 0 0 top {0}
+mol clipplane center 1 0 top {0.0 0.0 0.0}
+mol clipplane color  1 0 top {0.5 0.5 0.5 }
+mol clipplane normal 1 0 top {0.0 0.0 1.0}
+mol clipplane status 1 0 top {0}
+mol clipplane center 2 0 top {0.0 0.0 0.0}
+mol clipplane color  2 0 top {0.5 0.5 0.5 }
+mol clipplane normal 2 0 top {0.0 0.0 1.0}
+mol clipplane status 2 0 top {0}
+mol clipplane center 3 0 top {0.0 0.0 0.0}
+mol clipplane color  3 0 top {0.5 0.5 0.5 }
+mol clipplane normal 3 0 top {0.0 0.0 1.0}
+mol clipplane status 3 0 top {0}
+mol clipplane center 4 0 top {0.0 0.0 0.0}
+mol clipplane color  4 0 top {0.5 0.5 0.5 }
+mol clipplane normal 4 0 top {0.0 0.0 1.0}
+mol clipplane status 4 0 top {0}
+mol clipplane center 5 0 top {0.0 0.0 0.0}
+mol clipplane color  5 0 top {0.5 0.5 0.5 }
+mol clipplane normal 5 0 top {0.0 0.0 1.0}
+mol clipplane status 5 0 top {0}
+
+## SEL 1
+mol representation Tube 0.200000 12.000000
+mol color ColorID 10
+mol selection {not ions}
+mol material Opaque
+
+mol addrep top
+mol selupdate 1 top 0
+mol colupdate 1 top 0
+mol scaleminmax top 1 0.000000 0.000000
+mol smoothrep top 1 0
+mol drawframes top 1 {now}
+mol clipplane center 0 1 top {0.0 0.0 0.0}
+mol clipplane color  0 1 top {0.5 0.5 0.5 }
+mol clipplane normal 0 1 top {0.0 0.0 1.0}
+mol clipplane status 0 1 top {0}
+mol clipplane center 1 1 top {0.0 0.0 0.0}
+mol clipplane color  1 1 top {0.5 0.5 0.5 }
+mol clipplane normal 1 1 top {0.0 0.0 1.0}
+mol clipplane status 1 1 top {0}
+mol clipplane center 2 1 top {0.0 0.0 0.0}
+mol clipplane color  2 1 top {0.5 0.5 0.5 }
+mol clipplane normal 2 1 top {0.0 0.0 1.0}
+mol clipplane status 2 1 top {0}
+mol clipplane center 3 1 top {0.0 0.0 0.0}
+mol clipplane color  3 1 top {0.5 0.5 0.5 }
+mol clipplane normal 3 1 top {0.0 0.0 1.0}
+mol clipplane status 3 1 top {0}
+mol clipplane center 4 1 top {0.0 0.0 0.0}
+mol clipplane color  4 1 top {0.5 0.5 0.5 }
+mol clipplane normal 4 1 top {0.0 0.0 1.0}
+mol clipplane status 4 1 top {0}
+mol clipplane center 5 1 top {0.0 0.0 0.0}
+mol clipplane color  5 1 top {0.5 0.5 0.5 }
+mol clipplane normal 5 1 top {0.0 0.0 1.0}
+mol clipplane status 5 1 top {0}
+
+## SEL 2
+mol representation Licorice 0.100000 12.000000 12.000000
+mol color ColorID 1
+mol selection {resid 1 to 5 52 to 56}
+mol material Opaque
+
+mol addrep top
+mol selupdate 2 top 0
+mol colupdate 2 top 0
+mol scaleminmax top 2 0.000000 0.000000
+mol smoothrep top 2 0
+mol drawframes top 2 {now}
+mol clipplane center 0 2 top {0.0 0.0 0.0}
+mol clipplane color  0 2 top {0.5 0.5 0.5 }
+mol clipplane normal 0 2 top {0.0 0.0 1.0}
+mol clipplane status 0 2 top {0}
+mol clipplane center 1 2 top {0.0 0.0 0.0}
+mol clipplane color  1 2 top {0.5 0.5 0.5 }
+mol clipplane normal 1 2 top {0.0 0.0 1.0}
+mol clipplane status 1 2 top {0}
+mol clipplane center 2 2 top {0.0 0.0 0.0}
+mol clipplane color  2 2 top {0.5 0.5 0.5 }
+mol clipplane normal 2 2 top {0.0 0.0 1.0}
+mol clipplane status 2 2 top {0}
+mol clipplane center 3 2 top {0.0 0.0 0.0}
+mol clipplane color  3 2 top {0.5 0.5 0.5 }
+mol clipplane normal 3 2 top {0.0 0.0 1.0}
+mol clipplane status 3 2 top {0}
+mol clipplane center 4 2 top {0.0 0.0 0.0}
+mol clipplane color  4 2 top {0.5 0.5 0.5 }
+mol clipplane normal 4 2 top {0.0 0.0 1.0}
+mol clipplane status 4 2 top {0}
+mol clipplane center 5 2 top {0.0 0.0 0.0}
+mol clipplane color  5 2 top {0.5 0.5 0.5 }
+mol clipplane normal 5 2 top {0.0 0.0 1.0}
+mol clipplane status 5 2 top {0}
+
+## SEL 3
+mol representation Licorice 0.100000 12.000000 12.000000
+mol color ColorID 3
+mol selection {resid 6 to 8 28 to 30}
+mol material Opaque
+
+mol addrep top
+mol selupdate 3 top 0
+mol colupdate 3 top 0
+mol scaleminmax top 3 0.000000 0.000000
+mol smoothrep top 3 0
+mol drawframes top 3 {now}
+mol clipplane center 0 3 top {0.0 0.0 0.0}
+mol clipplane color  0 3 top {0.5 0.5 0.5 }
+mol clipplane normal 0 3 top {0.0 0.0 1.0}
+mol clipplane status 0 3 top {0}
+mol clipplane center 1 3 top {0.0 0.0 0.0}
+mol clipplane color  1 3 top {0.5 0.5 0.5 }
+mol clipplane normal 1 3 top {0.0 0.0 1.0}
+mol clipplane status 1 3 top {0}
+mol clipplane center 2 3 top {0.0 0.0 0.0}
+mol clipplane color  2 3 top {0.5 0.5 0.5 }
+mol clipplane normal 2 3 top {0.0 0.0 1.0}
+mol clipplane status 2 3 top {0}
+mol clipplane center 3 3 top {0.0 0.0 0.0}
+mol clipplane color  3 3 top {0.5 0.5 0.5 }
+mol clipplane normal 3 3 top {0.0 0.0 1.0}
+mol clipplane status 3 3 top {0}
+mol clipplane center 4 3 top {0.0 0.0 0.0}
+mol clipplane color  4 3 top {0.5 0.5 0.5 }
+mol clipplane normal 4 3 top {0.0 0.0 1.0}
+mol clipplane status 4 3 top {0}
+mol clipplane center 5 3 top {0.0 0.0 0.0}
+mol clipplane color  5 3 top {0.5 0.5 0.5 }
+mol clipplane normal 5 3 top {0.0 0.0 1.0}
+mol clipplane status 5 3 top {0}
+
+## SEL 4
+mol representation Licorice 0.100000 12.000000 12.000000
+mol color ColorID 9
+mol selection {resid 11 to 14 22 to 25}
+mol material Opaque
+
+mol addrep top
+mol selupdate 4 top 0
+mol colupdate 4 top 0
+mol scaleminmax top 4 0.000000 0.000000
+mol smoothrep top 4 0
+mol drawframes top 4 {now}
+mol clipplane center 0 4 top {0.0 0.0 0.0}
+mol clipplane color  0 4 top {0.5 0.5 0.5 }
+mol clipplane normal 0 4 top {0.0 0.0 1.0}
+mol clipplane status 0 4 top {0}
+mol clipplane center 1 4 top {0.0 0.0 0.0}
+mol clipplane color  1 4 top {0.5 0.5 0.5 }
+mol clipplane normal 1 4 top {0.0 0.0 1.0}
+mol clipplane status 1 4 top {0}
+mol clipplane center 2 4 top {0.0 0.0 0.0}
+mol clipplane color  2 4 top {0.5 0.5 0.5 }
+mol clipplane normal 2 4 top {0.0 0.0 1.0}
+mol clipplane status 2 4 top {0}
+mol clipplane center 3 4 top {0.0 0.0 0.0}
+mol clipplane color  3 4 top {0.5 0.5 0.5 }
+mol clipplane normal 3 4 top {0.0 0.0 1.0}
+mol clipplane status 3 4 top {0}
+mol clipplane center 4 4 top {0.0 0.0 0.0}
+mol clipplane color  4 4 top {0.5 0.5 0.5 }
+mol clipplane normal 4 4 top {0.0 0.0 1.0}
+mol clipplane status 4 4 top {0}
+mol clipplane center 5 4 top {0.0 0.0 0.0}
+mol clipplane color  5 4 top {0.5 0.5 0.5 }
+mol clipplane normal 5 4 top {0.0 0.0 1.0}
+mol clipplane status 5 4 top {0}
+
+## SEL 5
+mol representation Licorice 0.100000 12.000000 12.000000
+mol color ColorID 4
+mol selection {resid 39 to 42 47 to 50}
+mol material Opaque
+
+mol addrep top
+mol selupdate 5 top 0
+mol colupdate 5 top 0
+mol scaleminmax top 5 0.000000 0.000000
+mol smoothrep top 5 0
+mol drawframes top 5 {now}
+mol clipplane center 0 5 top {0.0 0.0 0.0}
+mol clipplane color  0 5 top {0.5 0.5 0.5 }
+mol clipplane normal 0 5 top {0.0 0.0 1.0}
+mol clipplane status 0 5 top {0}
+mol clipplane center 1 5 top {0.0 0.0 0.0}
+mol clipplane color  1 5 top {0.5 0.5 0.5 }
+mol clipplane normal 1 5 top {0.0 0.0 1.0}
+mol clipplane status 1 5 top {0}
+mol clipplane center 2 5 top {0.0 0.0 0.0}
+mol clipplane color  2 5 top {0.5 0.5 0.5 }
+mol clipplane normal 2 5 top {0.0 0.0 1.0}
+mol clipplane status 2 5 top {0}
+mol clipplane center 3 5 top {0.0 0.0 0.0}
+mol clipplane color  3 5 top {0.5 0.5 0.5 }
+mol clipplane normal 3 5 top {0.0 0.0 1.0}
+mol clipplane status 3 5 top {0}
+mol clipplane center 4 5 top {0.0 0.0 0.0}
+mol clipplane color  4 5 top {0.5 0.5 0.5 }
+mol clipplane normal 4 5 top {0.0 0.0 1.0}
+mol clipplane status 4 5 top {0}
+mol clipplane center 5 5 top {0.0 0.0 0.0}
+mol clipplane color  5 5 top {0.5 0.5 0.5 }
+mol clipplane normal 5 5 top {0.0 0.0 1.0}
+mol clipplane status 5 5 top {0}
+
+## SEL 6
+mol representation Lines 6.000000
+mol color Name
+mol selection {noh resid 10 16 18 19 38 44}
+mol material Opaque
+
+mol addrep top
+mol selupdate 6 top 0
+mol colupdate 6 top 0
+mol scaleminmax top 6 0.000000 0.000000
+mol smoothrep top 6 0
+mol drawframes top 6 {now}
+mol clipplane center 0 6 top {0.0 0.0 0.0}
+mol clipplane color  0 6 top {0.5 0.5 0.5 }
+mol clipplane normal 0 6 top {0.0 0.0 1.0}
+mol clipplane status 0 6 top {0}
+mol clipplane center 1 6 top {0.0 0.0 0.0}
+mol clipplane color  1 6 top {0.5 0.5 0.5 }
+mol clipplane normal 1 6 top {0.0 0.0 1.0}
+mol clipplane status 1 6 top {0}
+mol clipplane center 2 6 top {0.0 0.0 0.0}
+mol clipplane color  2 6 top {0.5 0.5 0.5 }
+mol clipplane normal 2 6 top {0.0 0.0 1.0}
+mol clipplane status 2 6 top {0}
+mol clipplane center 3 6 top {0.0 0.0 0.0}
+mol clipplane color  3 6 top {0.5 0.5 0.5 }
+mol clipplane normal 3 6 top {0.0 0.0 1.0}
+mol clipplane status 3 6 top {0}
+mol clipplane center 4 6 top {0.0 0.0 0.0}
+mol clipplane color  4 6 top {0.5 0.5 0.5 }
+mol clipplane normal 4 6 top {0.0 0.0 1.0}
+mol clipplane status 4 6 top {0}
+mol clipplane center 5 6 top {0.0 0.0 0.0}
+mol clipplane color  5 6 top {0.5 0.5 0.5 }
+mol clipplane normal 5 6 top {0.0 0.0 1.0}
+mol clipplane status 5 6 top {0}
+mol showrep top 6 1
+
+## SEL 7
+mol representation Lines 15.000000
+mol color Name
+mol selection {noh resid 19}
+mol material Opaque
+
+mol addrep top
+mol selupdate 7 top 0
+mol colupdate 7 top 0
+mol scaleminmax top 7 0.000000 0.000000
+mol smoothrep top 7 0
+mol drawframes top 7 {now}
+mol clipplane center 0 7 top {0.0 0.0 0.0}
+mol clipplane color  0 7 top {0.5 0.5 0.5 }
+mol clipplane normal 0 7 top {0.0 0.0 1.0}
+mol clipplane status 0 7 top {0}
+mol clipplane center 1 7 top {0.0 0.0 0.0}
+mol clipplane color  1 7 top {0.5 0.5 0.5 }
+mol clipplane normal 1 7 top {0.0 0.0 1.0}
+mol clipplane status 1 7 top {0}
+mol clipplane center 2 7 top {0.0 0.0 0.0}
+mol clipplane color  2 7 top {0.5 0.5 0.5 }
+mol clipplane normal 2 7 top {0.0 0.0 1.0}
+mol clipplane status 2 7 top {0}
+mol clipplane center 3 7 top {0.0 0.0 0.0}
+mol clipplane color  3 7 top {0.5 0.5 0.5 }
+mol clipplane normal 3 7 top {0.0 0.0 1.0}
+mol clipplane status 3 7 top {0}
+mol clipplane center 4 7 top {0.0 0.0 0.0}
+mol clipplane color  4 7 top {0.5 0.5 0.5 }
+mol clipplane normal 4 7 top {0.0 0.0 1.0}
+mol clipplane status 4 7 top {0}
+mol clipplane center 5 7 top {0.0 0.0 0.0}
+mol clipplane color  5 7 top {0.5 0.5 0.5 }
+mol clipplane normal 5 7 top {0.0 0.0 1.0}
+mol clipplane status 5 7 top {0}
+mol showrep top 7 1 
+####
+
+
+
+#### THIS DEFINES THE MOLECULE NAME
+mol rename top xtc_npt_onlyKCL.gro
+####
+
+
+
+#### SET A SPECIFIC VIEWPOINT (useful to make reproducible pictures)
+#
+# To get the following string (which essentially sets the viewpoint), once a desired viewpoint has been set in the VMD OpenGL Display, just open the Tk Console and type the following:
+#
+# puts "set viewpoints(\[molinfo top]) \{$testo\}"
+#
+# and replace the output with the string here below.
+#
+set viewpoints([molinfo top]) {{{1 0 0 -79.5435} {0 1 0 -80.5297} {0 0 1 -34.8712} {0 0 0 1}} {{-0.826186 0.231826 0.513256 0} {0.238305 0.969602 -0.054144 0} {-0.510243 0.0775928 -0.856341 0} {0 0 0 1}} {{0.0302106 0 0 0} {0 0.0302106 0 0} {0 0 0.0302106 0} {0 0 0 1}} {{1 0 0 -0.01} {0 1 0 0.12} {0 0 1 -2.22} {0 0 0 1}}}
+
+lappend viewplist [molinfo top]
+set topmol [molinfo top]
+# done with molecule 0
+
+foreach v $viewplist {
+  molinfo $v set {center_matrix rotate_matrix scale_matrix global_matrix} $viewpoints($v)
+}
+foreach v $fixedlist {
+  molinfo $v set fixed 1
+}
+unset viewplist
+unset fixedlist
+mol top $topmol
+unset topmol
+####
+
+
+
+#### SET A LABEL
+#
+# To make the label displayed on opening, DO NOT repeat the "label add Atoms 0/1820" line TWICE; if you do it will be set but result undisplayed.
+#
+# NOTE: it does not work with resid/name but by atom index (es. 1820, 26, 24)
+#
+label textsize 1.0
+label add Atoms 0/1820
+label textoffset Atoms 0 {0.0 0.0}
+label textformat Atoms 0 %R%d:%a
+label add Atoms 0/26
+label add Atoms 0/26
+label textoffset Atoms 1 {0.0 0.0}
+label textformat Atoms 1 %R%d:%a
+label add Atoms 0/24
+label add Atoms 0/24
+label textoffset Atoms 2 {0.0 0.0}
+label textformat Atoms 2 %R%d:%a
+####
+ 
+ 
+
+
